@@ -57,7 +57,6 @@ public class BillingCycleService {
             List<BillingCycle> billingCycles = billingCycle.getBillingCycles();
             boolean cycleEnded = false;
             for (BillingCycle billCycle : billingCycles) {
-                // cycle start day is same as today.
                 if (billCycle.getEndDate().before(today)) {
                     cycleEnded = true;
                     break;
