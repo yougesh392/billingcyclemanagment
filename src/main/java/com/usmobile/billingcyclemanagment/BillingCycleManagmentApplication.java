@@ -4,10 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BillingcyclemanagmentApplication {
-
+public class BillingCycleManagmentApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(BillingcyclemanagmentApplication.class, args);
+		SpringApplication.run(BillingCycleManagmentApplication.class, args);
 	}
-
 }
