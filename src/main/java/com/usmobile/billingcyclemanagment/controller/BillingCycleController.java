@@ -1,6 +1,8 @@
 package com.usmobile.billingcyclemanagment.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.usmobile.billingcyclemanagment.model.BillCycleRequest;
+import com.usmobile.billingcyclemanagment.model.UsageHistoryResponse;
 import com.usmobile.billingcyclemanagment.service.BillingCycleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,10 +19,25 @@ public class BillingCycleController {
     public BillingCycleController(BillingCycleService billingCycleService) {
         this.billingCycleService = billingCycleService;
     }
-    @GetMapping
+
+    @GetMapping("/dailyusage/{userId}")
     @Operation(summary = "Retrive billing cycle for the user", description = "retrive billing cycle for the user")
-public ResponseEntity getBillingCycle(@RequestParam BillCycleRequest billCycleRequest) {
-        return new ResponseEntity<>(billingCycleService.getBillingCycle(billCycleRequest), HttpStatus.OK);
+    public ResponseEntity<UsageHistoryResponse> getCurrentBillingCycleDailyUsage(@PathVariable String userId,
+                                                                                 @RequestParam String phoneNumber) throws JsonProcessingException {
+        BillCycleRequest billingCycleRequest = new BillCycleRequest();
+        billingCycleRequest.setPhoneNumber(phoneNumber);
+        billingCycleRequest.setUserId(userId);
+        return new ResponseEntity<UsageHistoryResponse>(billingCycleService.getBillingCycleDailyUsage(billingCycleRequest), HttpStatus.OK);
+    }
+
+    @GetMapping("/{userId}")
+    @Operation(summary = "Retrive billing cycle for the user", description = "retrive billing cycle for the user")
+    public ResponseEntity getBillingCycle(@PathVariable String userId,
+                                          @RequestParam String phoneNumber) {
+        BillCycleRequest billingCycleRequest = new BillCycleRequest();
+        billingCycleRequest.setPhoneNumber(phoneNumber);
+        billingCycleRequest.setUserId(userId);
+        return new ResponseEntity<>(billingCycleService.getBillingCycle(billingCycleRequest), HttpStatus.OK);
     }
 
 
