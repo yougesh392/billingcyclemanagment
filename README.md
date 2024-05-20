@@ -80,4 +80,6 @@ The service also logs the error details using SLF4J Logger, which can be helpful
 
 In the client side, when a `ResponseStatusException` is thrown, the client should catch this exception and handle it appropriately, such as showing an error message to the user or retrying the request.
 
+# Service Diagram
+
 ![Billing Cycle Diagram](images/billingcycle.png)
